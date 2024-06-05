@@ -1,31 +1,32 @@
-const  express=require("express");
+const express=require("express");
 const app=express();
-//now lets do some authentification stuff
-app.get("/health-checkup",function(req,res){
-    const kidneyId=req.query.Kid;
+app.get("/health",function(req,res){
+    //here I do health check up
+    const kid=req.query.kidneyId;
     const username=req.headers.username;
     const password=req.headers.password;
-    //lets do some authentification
-    if(username!="sriram" && password!="pass")
+    //now we will do  the authentification part
+    if(username!="sriram" && password!="1234")
     {
-        console.log("user authentification failed");
+        console.log("authentification has failed due to wrong username or password");
         res.status(403).json({
-            "message":"user authentification failed"
-        });
+            "message":"authentification has failed"
+        })
         return;
     }
-    //lets do some input validation
-    if(kidneyId!=1 && kidneyId!=2)
+    //now we will do the input validation check
+    if(kid!=1 || kid!=2)
     {
-        console.log("Input validation failed");
+        console.log("wrong inputs has been written");
         res.status(411).json({
-            "message":"Inputs are wrong"
+            "message":"input valiudation failed"
         });
         return;
     }
-    res.send("heart is healthy");
-});
-let port=3000;
-app.listen(port,function(){
-    console.log("server is running on https://localhost:3000");
+    let health_good=true;
+    //now the doctor check up would be done
+    if(health_good)
+    {
+        res.status(200).send("health is good");
+    }  
 })
