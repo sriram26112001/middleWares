@@ -6,7 +6,7 @@ app.get("/health",function(req,res){
     const username=req.headers.username;
     const password=req.headers.password;
     //now we will do  the authentification part
-    if(username!="sriram" && password!="1234")
+    if(username!="sriram" || password!="1234")
     {
         console.log("authentification has failed due to wrong username or password");
         res.status(403).json({
@@ -15,7 +15,7 @@ app.get("/health",function(req,res){
         return;
     }
     //now we will do the input validation check
-    if(kid!=1 || kid!=2)
+    if(kid!=1 && kid!=2)
     {
         console.log("wrong inputs has been written");
         res.status(411).json({
