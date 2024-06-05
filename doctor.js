@@ -29,8 +29,7 @@ app.get("/health",function(req,res){
     {
         res.status(200).send("health is good");
     }
-    
-    app.listen(3000,function(req,res){
-        console.log("server is operating on http://localhost:3000");
-    });
-})
+});
+app.listen(3000,function(req,res){
+    console.log("server is operating on http://localhost:3000");
+});
